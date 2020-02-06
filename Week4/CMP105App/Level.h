@@ -6,6 +6,7 @@
 #include <string.h>
 #include <iostream>
 #include "Player.h"
+#include "Enemy.h"
 
 
 class Level{
@@ -29,6 +30,10 @@ private:
 	// Level objects
 	GameObject testSprite;
 	Player player;
+	Enemy evil;
+	Enemy evil2;
 	sf::Texture texture;
+	sf::Texture texture2;
+	sf::Texture texture3;
 
 };

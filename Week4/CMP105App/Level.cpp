@@ -12,6 +12,18 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	player.setTexture(&texture);
 	player.setSize(sf::Vector2f(100, 100));
 	player.setPosition(100, 100);
+
+	texture2.loadFromFile("gfx/goomba.png");
+	evil.setTexture(&texture2);
+	evil.setSize(sf::Vector2f(100, 100));
+	evil.setPosition(400, 400);
+	evil.setVelocity(100, 100);
+
+	texture3.loadFromFile("gfx/sonic.png");
+	evil2.setTexture(&texture3);
+	evil2.setSize(sf::Vector2f(100, 100));
+	evil2.setPosition(900, 100);
+	evil2.setVelocity(101, 101);
 }
 
 Level::~Level()
@@ -29,13 +41,13 @@ void Level::handleInput(float dt)
 	{
 		window->close();
 	}
-
 }
 
 // Update game objects
 void Level::update(float dt)
 {
-	
+	evil.enemymove(window, dt);
+	evil2.enemymove(window, dt);
 }
 
 // Render level
@@ -44,6 +56,8 @@ void Level::render()
 	beginDraw();
 
 	window->draw(player);
+	window->draw(evil);
+	window->draw(evil2);
 
 	endDraw();
 }
