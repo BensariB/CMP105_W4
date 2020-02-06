@@ -24,6 +24,12 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	evil2.setSize(sf::Vector2f(100, 100));
 	evil2.setPosition(900, 100);
 	evil2.setVelocity(101, 101);
+
+	window->setMouseCursorVisible(false);
+	ctexture.loadFromFile("gfx/icon.png");
+	cursor.setTexture(&ctexture);
+	cursor.setSize(sf::Vector2f(30, 30));
+	cursor.setPosition(input->getMouseX(), input->getMouseY());
 }
 
 Level::~Level()
@@ -48,6 +54,7 @@ void Level::update(float dt)
 {
 	evil.enemymove(window, dt);
 	evil2.enemymove(window, dt);
+	cursor.updatecursor(input);
 }
 
 // Render level
@@ -58,6 +65,7 @@ void Level::render()
 	window->draw(player);
 	window->draw(evil);
 	window->draw(evil2);
+	window->draw(cursor);
 
 	endDraw();
 }
