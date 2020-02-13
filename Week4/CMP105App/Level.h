@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Cursor.h"
+#include "Background.h"
 
 
 class Level{
@@ -38,5 +39,10 @@ private:
 	sf::Texture texture2;
 	sf::Texture texture3;
 	sf::Texture ctexture;
+
+	//TASK 6
+	Background background;
+	sf::Texture textureBackground;
+	sf::View view;
 
 };

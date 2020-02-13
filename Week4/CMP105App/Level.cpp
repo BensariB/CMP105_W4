@@ -26,10 +26,16 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	evil2.setVelocity(101, 101);
 
 	window->setMouseCursorVisible(false);
-	ctexture.loadFromFile("gfx/icon.png");
-	cursor.setTexture(&ctexture);
+	//ctexture.loadFromFile("gfx/icon.png");
+	cursor.setTexture(&texture3);
 	cursor.setSize(sf::Vector2f(30, 30));
 	cursor.setPosition(input->getMouseX(), input->getMouseY());
+
+	//TASK 6
+	textureBackground.loadFromFile("gfx/Level1_1.png");
+	background.setTexture(&textureBackground);
+	background.setSize(sf::Vector2f(11038, 675));
+	view = window->getView();
 }
 
 Level::~Level()
@@ -47,26 +53,33 @@ void Level::handleInput(float dt)
 	{
 		window->close();
 	}
+	if (input->isKeyDown(sf::Keyboard::Right) && view.getCenter().x + view.getSize().x/2 < background.getSize().x) {
+		view.move(5000 * dt, 0);
+	}
+	if (input->isKeyDown(sf::Keyboard::Left) && view.getCenter().x - view.getSize().x / 2 > 0) {
+		view.move(-5000 * dt, 0);
+	}
 }
 
 // Update game objects
 void Level::update(float dt)
 {
-	evil.enemymove(window, dt);
-	evil2.enemymove(window, dt);
+	//evil.enemymove(window, dt);
+	//evil2.enemymove(window, dt);
 	cursor.updatecursor(input);
+	
 }
 
 // Render level
 void Level::render()
 {
 	beginDraw();
-
+	window->setView(view);
+	window->draw(background);
 	window->draw(player);
 	window->draw(evil);
 	window->draw(evil2);
 	window->draw(cursor);
-
 	endDraw();
 }
 
